@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add District</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .add-division-form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .add-division-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .add-division-input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            width: 200px;
+        }
+
+        .add-division-button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-division-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="add-division-form">
+            <h2 class="add-division-title">Add Unit</h2>
+            <form action="{{ url_for('add_unit') }}" method="POST">
+                <div class="input-group">
+                    <input class="add-division-input" type="text" name="id" placeholder="Enter ID">
+                    <input class="add-division-input" type="text" name="unit" placeholder="Enter Unit Name">
+                    <input class="add-division-input" type="text" name="short" placeholder="Enter ShortName">
+                    <button class="add-division-button" type="submit">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

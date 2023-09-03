@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<!-- Website - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Responsiive Admin Dashboard</title>
+    
+
+    <!-- Boxicons CDN Link -->
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+
+        /* Googlefont Poppins CDN Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.sidebar{
+  position: fixed;
+  height: 100%;
+  width: 240px;
+  background: #0A2558;
+  transition: all 0.5s ease;
+}
+.sidebar.active{
+  width: 60px;
+}
+.sidebar .logo-details{
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+.sidebar .logo-details i{
+  font-size: 28px;
+  font-weight: 500;
+  color: #fff;
+  min-width: 60px;
+  text-align: center
+}
+.sidebar .logo-details .logo_name{
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+}
+.sidebar .nav-links{
+  margin-top: 10px;
+}
+.sidebar .nav-links li{
+  position: relative;
+  list-style: none;
+  height: 50px;
+}
+.sidebar .nav-links li a{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+.sidebar .nav-links li a.active{
+  background: #081D45;
+}
+.sidebar .nav-links li a:hover{
+  background: #081D45;
+}
+.sidebar .nav-links li i{
+  min-width: 60px;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+}
+.sidebar .nav-links li a .links_name{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.sidebar .nav-links .log_out{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.home-section{
+  position: relative;
+  background: #f5f5f5;
+  min-height: 100vh;
+  width: calc(100% - 240px);
+  left: 240px;
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section{
+  width: calc(100% - 60px);
+  left: 60px;
+}
+.home-section nav{
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: calc(100% - 240px);
+  left: 240px;
+  z-index: 100;
+  padding: 0 20px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section nav{
+  left: 60px;
+  width: calc(100% - 60px);
+}
+.home-section nav .sidebar-button{
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+
+
+.home-section nav .profile-details{
+  display: flex;
+  align-items: center;
+  background: #F5F6FA;
+  border: 2px solid #EFEEF1;
+  border-radius: 6px;
+  height: 50px;
+  min-width: 190px;
+  padding: 0 15px 0 2px;
+}
+
+nav .profile-details .admin_name{
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 10px;
+  white-space: nowrap;
+}
+nav .profile-details i{
+  font-size: 25px;
+  color: #333;
+}
+.home-section .home-content{
+  position: relative;
+  padding-top: 104px;
+}
+.home-content .overview-boxes{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 20px;
+  margin-bottom: 26px;
+}
+.overview-boxes .box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% / 4 - 15px);
+  background: #fff;
+  padding: 15px 14px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+.overview-boxes .box-topic{
+  font-size: 20px;
+  font-weight: 500;
+}
+.home-content .box .number{
+  display: inline-block;
+  font-size: 35px;
+  margin-top: -6px;
+  font-weight: 500;
+}
+.home-content .box .indicator{
+  display: flex;
+  align-items: center;
+}
+.home-content .box .indicator i{
+  height: 20px;
+  width: 20px;
+  background: #8FDACB;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  margin-right: 5px;
+}
+.box .indicator i.down{
+  background: #e87d88;
+}
+.home-content .box .indicator .text{
+  font-size: 12px;
+}
+.home-content .box .cart{
+  display: inline-block;
+  font-size: 40px;
+  height: 50px;
+  width: 50px;
+  background: #cce5ff;
+  line-height: 50px;
+  text-align: center;
+  color: #66b0ff;
+  border-radius: 12px;
+  margin: -15px 0 0 6px;
+}
+.home-content .box .cart.two{
+   color: #2BD47D;
+   background: #C0F2D8;
+ }
+.home-content .box .cart.three{
+   color: #ffc233;
+   background: #ffe8b3;
+ }
+.home-content .box .cart.four{
+   color: #e05260;
+   background: #f7d4d7;
+ }
+.home-content .total-order{
+  font-size: 20px;
+  font-weight: 500;
+}
+.home-content .sales-boxes{
+  display: flex;
+  justify-content: space-between;
+  /* padding: 0 20px; */
+}
+
+/* left box */
+.home-content .sales-boxes .recent-sales{
+  width: 100%;
+  background: #fff;
+  padding: 20px 30px;
+  margin: 0 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.home-content .sales-boxes .sales-details{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.notification-box {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.notification-box h2 {
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.notification-box form {
+  margin-top: 20px;
+}
+
+.notification-box label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.notification-box select,
+.notification-box input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.notification-box .checkbox-group label {
+  display: inline-block;
+  margin-right: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.notification-box button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.notification-box button:hover {
+  background-color: #45a049;
+}
+
+/* Custom styling for checkboxes */
+.checkbox-group input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-group label {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+}
+
+.checkbox-group label:before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  position: absolute;
+  left: 0;
+  top: 2px;
+  transition: border-color 0.3s;
+}
+
+.checkbox-group input[type="checkbox"]:checked + label:before {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
+.checkbox-group input[type="checkbox"]:checked + label:after {
+  content: "\2713";
+  font-size: 14px;
+  color: #fff;
+  position: absolute;
+  left: 4px;
+  top: 1px;
+}
+
+.sub-menu {
+      display: none;
+    }
+    
+    .sub-menu.active {
+      display: block;
+      margin-left: 12px;
+    }
+    
+
+    .chart-container {
+        width: 33%;
+        float: left;
+        text-align: center;
+      }
+ 
+      .box-topic a {
+    text-decoration: none;
+    color: black;
+  }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="logo-details">
+        
+        <span class="logo_name" style="margin-left: 40px;">WELCOME</span>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="{{ url_for('dashboarda') }}" class="active">
+            <i class="bx bx-grid-alt"></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+        </li>
+        <li class="masters">
+          <a href="{{url_for('division')}}">
+            <i class="bx bx-file"></i>
+
+
+            <span class="links_name">Masters</span>
+            
+          </a>
+        </li>
+        
+
+        <li class>
+          <a href="{{ url_for('send_form') }}">
+            <i class="bx bx-list-ul"></i>
+            <span class="links_name">Send Forms</span>
+          </a>
+        </li>
+
+        <li class>
+          <a href="{{ url_for('show_form') }}">
+            <i class="bx bx-list-ul"></i>
+            <span class="links_name">Received Forms</span>
+          </a>
+        </li>
+        <!-- <li class>
+          <a href="{{ url_for('addplant') }}">
+            <i class="bx bx-list-ul"></i>
+            <span class="links_name">Plantation Details</span>
+          </a>
+        </li> -->
+
+        
+           
+            <li class="report">
+              <a href="#">
+                <i class="bx bxs-file-pdf"></i>
+                <span class="links_name">Report</span>
+                <i class="bx bx-chevron-down"></i>
+              </a>
+            </li>
+            <div class="sub-menu">
+                <li><a href="https://docs.google.com/spreadsheets/d/1IsDY_mszstI9v8nB6JBDWivtTL1rVu22/edit?usp=share_link&ouid=101118603610202338604&rtpof=true&sd=true" target="_blank">
+                  <i class="bx bxs-file"></i>
+                  <span class="links_name">Report 1</span></a></li>
+                  <li><a href="https://docs.google.com/spreadsheets/d/1cr4sdL_ejQqFwdNseDbkOK_a5gUo98kQ/edit?usp=share_link&ouid=101118603610202338604&rtpof=true&sd=true" target="_blank">
+                    <i class="bx bxs-file"></i>
+                    <span class="links_name">Report 2</span></a></li>
+                </div>
+            
+                <li class>
+                  <a href="{{ url_for('mis') }}">
+                    <i class="bx bx-error-circle"></i>
+                    <span class="links_name">MIS Report</span>
+                  </a>
+                </li>
+
+                <!-- <li class>
+                  <a href="{{ url_for('form') }}">
+                    <i class="bx bx-error-circle"></i>
+                    <span class="links_name">Form</span>
+                  </a>
+                </li> -->
+                
+        
+       
+        <li class="log_out">
+          <a href="{{ url_for('logout') }}">
+            <i class="bx bx-log-out"></i>
+            <span class="links_name">Logout</span>
+          </a>
+        </li>
+        
+      </div>
+    </div>
+    <section class="home-section">
+      <nav>
+        <div class="sidebar-button">
+         
+          <img src="http://localhost:8000/logo.png " height="75px" style="margin-left: -16px; margin-top:5px ;" alt="Logo" />
+          <span class="dashboard" style="margin-left: 17px;font-size: 22px;">HeadQuarters Head Dashboard / मुख्यालय हेड डैशबोर्ड</span>
+        </div>
+       
+        <div class="profile-details">
+          
+          <span class="admin_name"><h2>HeadQuarters Head...<i class="bx bx-user small-icon"></i></h2></span>
+          
+        </div>
+      </nav>
+
+      <div class="home-content">
+        <div class="overview-boxes">
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Division / <br>मंडल</div>
+              <div class="number">6</div>
+              <div class="indicator">
+                
+                <span class="text"></span>
+              </div>
+            </div>
+            <i class="bx bx-building cart "></i>
+
+
+          </div>
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Form Accepted / 
+                फॉर्म स्वीकृत </div>
+              <div class="number">{{ row_count }}</div>
+              <div class="indicator">
+                
+                <span class="text"></span>
+              </div>
+            </div>
+            <i class="bx bx-save  cart two"></i>
+          </div>
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">
+                <a href="/show_form">Received Form / प्राप्त फार्म</a>
+                </div>
+              <div class="number">{{treceived_form}}</div>
+              <div class="indicator">
+                
+                <span class="text"></span>
+              </div>
+            </div>
+            <i class="bx bx-cloud cart three"></i>
+          </div>
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Unsubmitted Form/अप्रस्तुत डेटा</div>
+              <div class="number">{{ tunsubmit_form}}</div>
+              <div class="indicator">
+                
+                <span class="text"></span>
+              </div>
+            </div>
+            <i class="bx bx-file-blank cart four"></i>
+          </div>
+        </div>
+
+        <div class="sales-boxes">
+          <div class="recent-sales box">
+            <div class="sales-details">
+              <table style="border-collapse: collapse; width: 100%; margin-bottom: 20px;">
+                <tr style="background-color: #f2f2f2;">
+                  <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Division</th>
+                  <th style="border: 1px solid #ddd; padding: 12px; text-align: center;">Ambala</th>
+                  <th style="border: 1px solid #ddd; padding: 12px; text-align: center;">Faridabad</th>
+                  <th style="border: 1px solid #ddd; padding: 12px; text-align: center;">Gurugram</th>
+                  <th style="border: 1px solid #ddd; padding: 12px; text-align: center;">Hisar</th>
+                  <th style="border: 1px solid #ddd; padding: 12px; text-align: center;">Rohtak</th>
+                  <th style="border: 1px solid #ddd; padding: 12px; text-align: center;">Karnal</th>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 12px;">Total Form Accepted</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{form1_submit}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{form2_submit}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{form3_submit}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{form4_submit}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{form5_submit}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{form6_submit}}</td>
+                </tr>
+                <!-- <tr>
+                  <td style="border: 1px solid #ddd; padding: 12px;">Total Request Pending </td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{0 }}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{0}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{0}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{0}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{0}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{0}}</td>
+                </tr> -->
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 12px;">Total Received Form</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{form1_count}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{form2_count}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{form3_count}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{form4_count}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{form5_count}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{form6_count}}</td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 12px;">Total Unsubmitted Form</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{ request1_count}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{ request2_count}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{ request3_count}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{ request4_count}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{ request5_count}}</td>
+                  <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{ request6_count}}</td>
+                </tr>
+              </table>
+            </div>
+
+          </div>
+        </div>
+        
+      
+        </div>
+          <div style="display: flex; flex-direction: row;
+          ">
+         <div class="notification-box">
+        <h2>Send Notification</h2>
+        <form action="{{ url_for('send_email') }}" method="POST">
+          <label for="notification-type">Notification Type:</label>
+          <select id="notification-type">
+            <option value="sms">SMS</option>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="email">Email</option>
+          </select>
+          
+          <label for="duration">Time Interval(in days):</label>
+          <input type="text" id="duration" placeholder="Enter duration">
+          
+          <label for="users">Select Users:</label>
+          <div class="checkbox-group">
+            <input type="checkbox" id="user1" name="user1" value="user1">
+            <label for="user1">DFO Ambala</label>
+            
+            <input type="checkbox" id="user2" name="user2" value="user2">
+            <label for="user2">DFO Faridabad</label>
+            
+            <input type="checkbox" id="user3" name="user3" value="user3">
+            <label for="user3">DFO Gurugram</label>
+
+            <input type="checkbox" id="user4" name="user4" value="user4">
+            <label for="user4">DFO Hisar</label>
+            <br>
+            <input type="checkbox" id="user5" name="user5" value="user5">
+            <label for="user5">DFO Rohtak</label>
+            <br>
+            <input type="checkbox" id="user6" name="user6" value="user6">
+            <label for="user6">DFO Karnal</label>
+
+          </div>
+          
+          <button type="submit">Send</button>
+        </form>
+      </div>
+      
+      <div id="barchart_values" style="width: 500px; height: 100px; margin-top: 20px; margin-left: 20px;"></div>
+    </div>
+    
+      </div>
+      <div class="chart-container">
+        <div id="piechart_1" style="width: 100%; height: 300px;"></div>
+        <div>Ambala</div>
+      </div>
+      <div class="chart-container">
+        <div id="piechart_2" style="width: 100%; height: 300px;"></div>
+        <div>Faridabad</div>
+      </div>
+      <div class="chart-container">
+        <div id="piechart_3" style="width: 100%; height: 300px;"></div>
+        <div>Gurugram</div>
+      </div>
+      <div class="chart-container">
+        <div id="piechart_4" style="width: 100%; height: 300px;"></div>
+        <div>Hisar</div>
+      </div>
+      <div class="chart-container">
+        <div id="piechart_5" style="width: 100%; height: 300px;"></div>
+        <div>Rohtak</div>
+      </div>
+      <div class="chart-container">
+        <div id="piechart_6" style="width: 100%; height: 300px;"></div>
+        <div>Karnal</div>
+      </div>
+    </section>
+    
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+      
+
+      const reportLink = document.querySelector('.report a');
+      const subMenu = document.querySelector('.sub-menu');
+    
+     reportLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      subMenu.classList.toggle('active');
+      });
+
+      
+
+      google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var ambala= {{ request1_count}};
+      var faridabad={{ request2_count}};
+      var gurugram={{ request3_count}};
+      var hisar={{ request4_count}};
+      var rohtak={{ request5_count}};
+      var karnal={{ request6_count}};
+
+
+      var data = google.visualization.arrayToDataTable([
+        ["Division", "Unsubmitted form", { role: "style" }],
+        ["Ambala", ambala, "#FF3D00"],
+        ["Faridabad", faridabad, "#FF9100"],
+        ["Gurugram", gurugram, "#FFC400"],
+        ["Hisar", hisar, "#FFEE58"],
+        ["Rohtak", rohtak, "#D4E157"],
+        ["Karnal", karnal, "#9CCC65"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([
+        {
+          type: "string",
+          label: "Division",
+          id: "Element",
+          calc: function (dt, row) {
+            return dt.getValue(row, 0);
+          }
+        },
+        {
+          type: "number",
+          label: "",
+          id: "Density",
+          calc: function (dt, row) {
+            return dt.getValue(row, 1);
+          }
+        },
+        {
+          type: "string",
+          role: "style",
+          calc: function (dt, row) {
+            return dt.getValue(row, 2);
+          }
+        }
+      ]);
+
+      var options = {
+        title: "Bar Chart",
+        width: 680,
+        height: 500,
+        legend: { position: "none" },
+        orientation: 'horizontal',
+        vAxis: { title: "Unsubmitted Form" },
+        
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+      chart.draw(view, options);
+    }
+      google.charts.load("current", { packages: ["corechart"] });
+      google.charts.setOnLoadCallback(drawCharts);
+      function drawCharts() {
+        var userCount1 = {{ form1_submit}}; // Assuming `user_count1` is a JavaScript variable containing the dynamic value for the first chart
+        var userCount2 = {{ form2_submit}}; // Assuming `user_count2` is a JavaScript variable containing the dynamic value for the second chart
+        var userCount3 = {{ form3_submit}}; // Assuming `user_count3` is a JavaScript variable containing the dynamic value for the third chart
+        var userCount4 = {{ form4_submit}}; // Assuming `user_count4` is a JavaScript variable containing the dynamic value for the fourth chart
+        var userCount5 = {{ form5_submit}}; // Assuming `user_count5` is a JavaScript variable containing the dynamic value for the fifth chart
+        var userCount6 = {{ form6_submit}}; // Assuming `user_count6` is a JavaScript variable containing the dynamic value for the sixth chart
+
+        var unsub1={{request1_count}};
+        var unsub2={{request2_count}};
+        var unsub3={{request3_count}};
+        var unsub4={{request4_count}};
+        var unsub5={{request5_count}};
+        var unsub6={{request6_count}};
+
+
+        var data1 = google.visualization.arrayToDataTable([
+          ["Task", "Count"],
+          ["Form Submitted", userCount1],
+          ["unsubmitted", unsub1]
+          
+        ]);
+
+        var data2 = google.visualization.arrayToDataTable([
+          ["Task", "Count"],
+          ["Form submitted", userCount2],
+          ["unsubmitted", unsub2]
+          
+        ]);
+
+        var data3 = google.visualization.arrayToDataTable([
+          ["Task", "Count"],
+          ["Form Submitted", userCount3],
+          ["Unsubmitted", unsub3],
+          
+        ]);
+
+        var data4 = google.visualization.arrayToDataTable([
+          ["Task", "Count"],
+          ["Form Submitted", userCount4],
+          ["Unsubmitted", unsub4]
+          
+        ]);
+
+        var data5 = google.visualization.arrayToDataTable([
+          ["Task", "Count"],
+          ["Form Submitted", userCount5],
+          ["Unsubmitted", unsub5]
+        ]);
+
+        var data6 = google.visualization.arrayToDataTable([
+          ["Task", "Count"],
+          ["Form Submitted", userCount6],
+          ["Unsubmitted", unsub6],
+        ]);
+
+        var options = {
+          title: "",
+          is3D: true,
+          colors: ["#00FF00", "#FF0000", "#800080"],
+          legend:'none'// Remove the legend
+        };
+
+        var chart1 = new google.visualization.PieChart(document.getElementById("piechart_1"));
+        chart1.draw(data1, options);
+
+        var chart2 = new google.visualization.PieChart(document.getElementById("piechart_2"));
+        chart2.draw(data2, options);
+
+        var chart3 = new google.visualization.PieChart(document.getElementById("piechart_3"));
+        chart3.draw(data3, options);
+
+        var chart4 = new google.visualization.PieChart(document.getElementById("piechart_4"));
+        chart4.draw(data4, options);
+
+        var chart5 = new google.visualization.PieChart(document.getElementById("piechart_5"));
+        chart5.draw(data5, options);
+
+        var chart6 = new google.visualization.PieChart(document.getElementById("piechart_6"));
+        chart6.draw(data6, options);
+      }
+    
+      
+    </script>
+  </body>
+</html>

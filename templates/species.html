@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<!-- Website - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Responsiive Admin Dashboard | CodingLab</title>
+    
+    <!-- Boxicons CDN Link -->
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        /* Googlefont Poppins CDN Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.sidebar{
+  position: fixed;
+  height: 100%;
+  width: 240px;
+  background: #0A2558;
+  transition: all 0.5s ease;
+}
+.sidebar.active{
+  width: 60px;
+}
+.sidebar .logo-details{
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+.sidebar .logo-details i{
+  font-size: 28px;
+  font-weight: 500;
+  color: #fff;
+  min-width: 60px;
+  text-align: center
+}
+.sidebar .logo-details .logo_name{
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+}
+.sidebar .nav-links{
+  margin-top: 10px;
+}
+.sidebar .nav-links li{
+  position: relative;
+  list-style: none;
+  height: 28px;
+}
+.sidebar .nav-links li a{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+.sidebar .nav-links li a.active{
+  background: #081D45;
+}
+.sidebar .nav-links li a:hover{
+  background: #081D45;
+}
+.sidebar .nav-links li i{
+  min-width: 60px;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+}
+.sidebar .nav-links li a .links_name{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.sidebar .nav-links .log_out{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.home-section{
+  position: relative;
+  background: #f5f5f5;
+  min-height: 100vh;
+  width: calc(100% - 240px);
+  left: 240px;
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section{
+  width: calc(100% - 60px);
+  left: 60px;
+}
+.home-section nav{
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: calc(100% - 240px);
+  left: 240px;
+  z-index: 100;
+  padding: 0 20px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section nav{
+  left: 60px;
+  width: calc(100% - 60px);
+}
+.home-section nav .sidebar-button{
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+nav .sidebar-button i{
+  font-size: 35px;
+  margin-right: 10px;
+}
+
+.home-section nav .profile-details{
+  display: flex;
+  align-items: center;
+  background: #F5F6FA;
+  border: 2px solid #EFEEF1;
+  border-radius: 6px;
+  height: 50px;
+  min-width: 190px;
+  padding: 0 15px 0 2px;
+}
+
+nav .profile-details .admin_name{
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 10px;
+  white-space: nowrap;
+}
+nav .profile-details i{
+  font-size: 25px;
+  color: #333;
+}
+.home-section .home-content{
+  position: relative;
+  padding-top: 104px;
+}
+
+
+
+.home-section .home-content{
+  position: relative;
+  padding-top: 94px;
+}
+.home-content .overview-boxes{
+  
+  width: 100%;
+  
+}
+
+
+.home-content .sales-boxes{
+  display: flex;
+  justify-content: space-between;
+  /* padding: 0 20px; */
+}
+
+/* left box */
+.home-content .sales-boxes .recent-sales{
+  width: 60%;
+  background: #fff;
+  padding: 20px 30px;
+  margin: 0 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            
+            margin: 0px 9px 0px 9px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .row-count {
+            font-size: 14px;
+        }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            margin-right: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .add-button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .actions {
+            display: flex;
+        }
+
+        .edit-button {
+            margin-right: 5px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 7px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .delete-button {
+            background-color: #f44336;
+            color: #fff;
+            border: none;
+            padding: 7px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .input-group {
+          display: flex;
+    align-items: baseline;
+    gap: 28px;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+
+      
+
+
+
+
+
+
+
+
+ 
+  
+
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      
+      <ul class="nav-links">
+        <li>
+          <a href="{{ url_for('division') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">Division</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('district') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">District</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('block') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">Block</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('village') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">Village</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('range') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">Range</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('beat') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">Beat</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('wing') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">Wing</span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="{{ url_for('land') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">Land Category</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('unit') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">Units</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('plant') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">Plant Category</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('species') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">Species</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('scheme') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">Scheme</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('site') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">Site Name</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('khasra') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">Khasra Number</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('nplant') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">No of Plant</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('latitude') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">Latitude</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('longitude') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">Longitude</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('spaceing') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">Spaceing</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('value') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">Value</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('plantationdate') }}" class="active">
+            <i class="bx bx-folder"></i>
+
+            <span class="links_name">Plantation Date</span>
+          </a>
+        </li>
+
+
+      </ul>
+    </div>
+    <section class="home-section">
+      <nav>
+        <div class="sidebar-button">
+          <img src="http://localhost:8000/logo.png " height="75px" style="margin-left: -16px; margin-top:5px ;" alt="Logo" />
+          
+          <h1 style="margin-left: 310px; margin-top: 12px;">Species</h1>
+
+        </div>
+        <div class="profile-details">
+          
+          <span class="admin_name"><h2>HeadQuarters Head...<i class="bx bx-user small-icon"></i></h2></span>
+          
+        </div>
+        
+      </nav>
+
+      <div class="home-content">
+        <div class="overview-boxes">
+        
+            <section>
+                <div class="container">
+                  <a href="dashboarda" style="text-decoration: none;">
+                    <button style="background-color: #2c53d7; color: #FFFFFF; border: none; padding: 8px 16px; border-radius: 30px; font-size: 14px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);">
+                      Go to Dashboard
+                    </button>
+                  </a>
+                  <a href="add_page10" style="display: inline-block; background-color: green; color: #fff; border: none; padding: 8px 12px; border-radius: 4px; font-size: 14px; text-decoration: none; position: relative; margin-left: 842px; margin-bottom: 10px;">
+                    Create&nbsp;Species
+                    <span style="position: absolute; top: 0; right: 0; transform: translate(50%, -50%); background-color: #fff; color: green; width: 20px; height: 20px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 12px; font-weight: bold;">+</span>
+                  </a>
+                  
+                    <div class="header">
+                      
+                      
+                      
+                        <div class="row-count">
+                            Total Number of Species: {{ specieses|length }}
+                        </div>
+                        <div class="search-form">
+                            <form action="{{ url_for('search_species') }}" method="POST">
+                                <input class="search-input" type="text" name="search" placeholder="Search Species">
+                                <button type="submit" style="padding: 5px 12px;">Search</button>
+                            </form>
+                            <a href="{{url_for('species')}}" style="display: inline-block; background-color: #007bff; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; font-size: 14px; text-decoration: none; cursor: pointer; margin-left: 5px;">Clear</a>
+                           
+                        </div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>ID</th>
+                                
+                                <th>Species Name</th>
+                                <th>Scientific Name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for species in specieses %}
+                            <tr>
+                              <td><input type="checkbox" class="species-checkbox" name="division_id" value="{{ species[0] }}"></td>
+                                <td>{{ species[0] }}</td>
+                                <td>{{ species[1] }}</td>
+                                <td>{{species[2]}}</td>
+                                <td class="actions">
+                                    <a class="edit-button" href="{{ url_for('edit_species', species_id=species[0]) }}">Edit</a>
+                                    <form action="{{ url_for('delete_species', species_id=species[0]) }}" method="POST">
+                                        <button class="delete-button" type="submit">Delete</button>
+                                        
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <hr>
+                    <div class="input-group">
+                      <label class="checkbox-label">
+                          <input type="checkbox" id="select-all-checkbox" onclick="selectAllDivisions()"> Select All
+                      </label>
+                      <!-- <button class="edit-button" id="edit-button" >Edit</button> -->
+                      <button class="edit-button" id="edit-button">Edit</button>
+
+                      <button class="delete-button" id="delete-button">Delete</button>
+                      <button style="background-color: #007bff;" class="delete-button" id="delete-button" onclick="clearSelection()">Clear</button>
+
+                  </div>
+                  
+                </div>
+          </section>
+          
+            
+          </div>
+          
+          
+
+          
+      </div>
+    </section>
+    <script>
+      
+
+      
+  
+
+
+
+      function selectAllDivisions() {
+    var checkboxes = document.getElementsByClassName("species-checkbox");
+    var selectAllCheckbox = document.getElementById("select-all-checkbox");
+
+    for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = selectAllCheckbox.checked;
+    }
+  }
+
+  var editUrl = "{{ url_for('edit_selected_specieses') }}";
+
+document.getElementById('edit-button').addEventListener('click', function() {
+  editSelectedDivisions(editUrl);
+});
+
+function editSelectedDivisions(editUrl) {
+  var checkboxes = document.getElementsByClassName('species-checkbox');
+  var selectedDistrictIds = [];
+
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      var divisionId = parseInt(checkboxes[i].value);
+      if (!isNaN(divisionId)) {
+        selectedDistrictIds.push(divisionId);
+      }
+    }
+  }
+
+  var queryParam = "specieses_ids=" + selectedDistrictIds.join(',');
+
+  if (selectedDistrictIds.length > 0) {
+    window.location.href = editUrl + "?" + queryParam;
+  }
+}
+
+var editUr = "{{ url_for('delete_selected_specieses') }}";
+
+document.getElementById('delete-button').addEventListener('click', function() {
+  editSelectedDivisions(editUr);
+});
+
+function editSelectedDivisions(editUr) {
+  var checkboxes = document.getElementsByClassName('species-checkbox');
+  var selectedDistrictIds = [];
+
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      var divisionId = parseInt(checkboxes[i].value);
+      if (!isNaN(divisionId)) {
+        selectedDistrictIds.push(divisionId);
+      }
+    }
+  }
+
+  var queryParam = "specieses_ids=" + selectedDistrictIds.join(',');
+
+  if (selectedDistrictIds.length > 0) {
+    window.location.href = editUr + "?" + queryParam;
+  }
+}
+
+function clearSelection() {
+        var checkboxes = document.getElementsByClassName('species-checkbox');
+
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = false;
+        }
+    }
+
+
+    </script>
+    
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit District</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 630px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap:6px;
+        }
+
+        input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Block</h1>
+        <form action="{{ url_for('edit_block', block_id=block[0]) }}" method="POST">
+            <input type="text" name="new_name1" placeholder="New ID" value="{{ block[0] }}">
+            <input type="text" name="new_name2" placeholder="New Division Name" value="{{ block[1] }}">
+            <input type="text" name="new_name3" placeholder="New District Name" value="{{ block[2] }}">
+            <input type="text" name="new_name4" placeholder="New Block Name" value="{{ block[3] }}">
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</body>
+</html>

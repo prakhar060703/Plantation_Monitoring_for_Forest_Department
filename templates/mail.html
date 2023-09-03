@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 100px;
+        }
+        
+        .success {
+            color: #2ecc71;
+        }
+        
+        .error {
+            color: #e74c3c;
+        }
+        
+        .result-box {
+            background-color: #FFF;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        .btn {
+            background-color: #2ecc71;
+            color: #FFF;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-box">
+        {% if success %}
+        <h1 class="success">Send</h1>
+        {% else %}
+        <h1 class="error">Error</h1>
+        {% endif %}
+        <p>{{ message }}</p>
+        <a class="btn" href="/dashboarda">Go Back</a>
+    </div>
+</body>
+</html>

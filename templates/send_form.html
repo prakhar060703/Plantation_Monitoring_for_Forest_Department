@@ -1,0 +1,426 @@
+
+<!DOCTYPE html>
+<!-- Website - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Responsiive Admin Dashboard | CodingLab</title>
+    
+    <!-- Boxicons CDN Link -->
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        /* Googlefont Poppins CDN Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.sidebar{
+  position: fixed;
+  height: 100%;
+  width: 240px;
+  background: #0A2558;
+  transition: all 0.5s ease;
+}
+.sidebar.active{
+  width: 60px;
+}
+.sidebar .logo-details{
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+.sidebar .logo-details i{
+  font-size: 28px;
+  font-weight: 500;
+  color: #fff;
+  min-width: 60px;
+  text-align: center
+}
+.sidebar .logo-details .logo_name{
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+}
+.sidebar .nav-links{
+  margin-top: 10px;
+}
+.sidebar .nav-links li{
+  position: relative;
+  list-style: none;
+  height: 50px;
+}
+.sidebar .nav-links li a{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+.sidebar .nav-links li a.active{
+  background: #081D45;
+}
+.sidebar .nav-links li a:hover{
+  background: #081D45;
+}
+.sidebar .nav-links li i{
+  min-width: 60px;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+}
+.sidebar .nav-links li a .links_name{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.sidebar .nav-links .log_out{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.home-section{
+  position: relative;
+  background: #f5f5f5;
+  min-height: 100vh;
+  width: calc(100% - 240px);
+  left: 240px;
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section{
+  width: calc(100% - 60px);
+  left: 60px;
+}
+.home-section nav{
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: calc(100% - 240px);
+  left: 240px;
+  z-index: 100;
+  padding: 0 20px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section nav{
+  left: 60px;
+  width: calc(100% - 60px);
+}
+.home-section nav .sidebar-button{
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+nav .sidebar-button i{
+  font-size: 35px;
+  margin-right: 10px;
+}
+
+.home-section nav .profile-details{
+  display: flex;
+  align-items: center;
+  background: #F5F6FA;
+  border: 2px solid #EFEEF1;
+  border-radius: 6px;
+  height: 50px;
+  min-width: 190px;
+  padding: 0 15px 0 2px;
+}
+
+nav .profile-details .admin_name{
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 10px;
+  white-space: nowrap;
+}
+nav .profile-details i{
+  font-size: 25px;
+  color: #333;
+}
+.home-section .home-content{
+  position: relative;
+  padding-top: 104px;
+}
+
+
+
+.home-section .home-content{
+  position: relative;
+  padding-top: 94px;
+}
+.home-content .overview-boxes{
+  
+  width: 100%;
+  
+}
+
+
+.home-content .sales-boxes{
+  display: flex;
+  justify-content: space-between;
+  /* padding: 0 20px; */
+}
+
+/* left box */
+.home-content .sales-boxes .recent-sales{
+  width: 60%;
+  background: #fff;
+  padding: 20px 30px;
+  margin: 0 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    
+
+    select,
+    input[type="checkbox"] {
+      
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-top:4px;
+    }
+
+    
+
+    button {
+      display: block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+    
+    .user-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .user-dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background-color: #f9f9f9;
+    min-width: 178px;
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+
+  .user-dropdown-content input[type="checkbox"] {
+    margin-right: 5px;
+    transform: scale(1.3);
+  }
+
+  .user-dropdown:hover .user-dropdown-content {
+    display: block;
+  }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+        <div class="logo-details">
+        
+            <span class="logo_name" style="margin-left: 40px;">WELCOME</span>
+          </div>
+      
+        <ul class="nav-links">
+            <li>
+              <a href="{{ url_for('dashboarda') }}" class="active">
+                <i class="bx bx-grid-alt"></i>
+                <span class="links_name">Dashboard</span>
+              </a>
+            </li>
+            <li class="masters">
+              <a href="{{url_for('division')}}">
+                <i class="bx bx-file"></i>
+    
+    
+                <span class="links_name">Masters</span>
+                
+              </a>
+            </li>
+            
+    
+            <li class>
+              <a href="{{ url_for('send_form') }}">
+                <i class="bx bx-list-ul"></i>
+                <span class="links_name">Send Forms</span>
+              </a>
+            </li>
+    
+            <li class>
+              <a href="{{ url_for('show_form') }}">
+                <i class="bx bx-list-ul"></i>
+                <span class="links_name">Plantation Forms</span>
+              </a>
+            </li>
+            <!-- <li class>
+              <a href="{{ url_for('addplant') }}">
+                <i class="bx bx-list-ul"></i>
+                <span class="links_name">Plantation Details</span>
+              </a>
+            </li> -->
+    
+            
+               
+                
+                
+                    <li class>
+                      <a href="{{ url_for('mis') }}">
+                        <i class="bx bx-error-circle"></i>
+                        <span class="links_name">MIS Report</span>
+                      </a>
+                    </li>
+    
+                    <!-- <li class>
+                      <a href="{{ url_for('form') }}">
+                        <i class="bx bx-error-circle"></i>
+                        <span class="links_name">Form</span>
+                      </a>
+                    </li> -->
+                    
+            
+           
+            <li class="log_out">
+              <a href="{{ url_for('logout') }}">
+                <i class="bx bx-log-out"></i>
+                <span class="links_name">Logout</span>
+              </a>
+            </li>
+        </ul>
+
+    </div>
+    <section class="home-section">
+      <nav>
+        <div class="sidebar-button">
+          <img src="http://localhost:8000/logo.png " height="75px" style="margin-left: -16px; margin-top:5px ;" alt="Logo" />
+          
+          <h1 style="margin-left: 310px; margin-top: 12px;">Send Form</h1>
+
+        </div>
+        <div class="profile-details">
+          
+          <span class="admin_name"><h2>HeadQuarters Head...<i class="bx bx-user small-icon"></i></h2></span>
+          
+        </div>
+        
+      </nav>
+
+      <div class="home-content">
+        <div class="overview-boxes">
+        
+            <section>
+                
+                <div class="container">
+                    <h1>Form Data</h1>
+                    <form action="{{ url_for('save_recent') }}" method="POST">
+                        <label for="species" style="display: inline-block; width: 150px;">Select Species:</label>
+                        <select id="species" name="species" style="display: inline-block; width: 150px;">
+                          <option value="">Select</option>
+                          <option value="Chikoo">Chikoo</option>
+                          <option value="Neem">Neem</option>
+                          <option value="Mango">Mango</option>
+                          <option value="Orange">Orange</option>
+                        </select>
+                        <label for="spaceing" style="display: inline-block; width: 150px; margin-left: 25px;">Spaceing:</label>
+                        <input type="text" id="spaceing" name="spaceing" style="display: inline-block; width: 100px; margin-left: -50px;">
+                        <br>
+                        <label for="scheme" style="display: inline-block; width: 150px;">Select Scheme:</label>
+                        <select id="scheme" name="scheme" style="display: inline-block; width: 150px;">
+                        <option value="">Select</option>
+                        <option value="Scheme1">Scheme1</option>
+                        <option value="Scheme2">Scheme2</option>
+                        <option value="Scheme3">Scheme3</option>
+                        <option value="Scheme4">Scheme4</option>
+                        </select>
+
+                        <br>
+                        <div class="user-dropdown">
+                          <button class="user-dropdown-btn" style="width: 178px; background-color: #544caf;">Select Users</button>
+                          <div class="user-dropdown-content">
+                            <label>
+                              <input type="checkbox" id="user1" name="user1">
+                              Ambala User
+                            </label>
+                            <br>
+                            <label>
+                              <input type="checkbox" id="user2" name="user2">
+                              Faridabad User
+                            </label>
+                            <br>
+                            <label>
+                              <input type="checkbox" id="user3" name="user3">
+                              Gurugram User
+                            </label>
+                            <br>
+                            <label>
+                              <input type="checkbox" id="user4" name="user4">
+                              Hisar User
+                            </label>
+                            <br>
+                            <label>
+                              <input type="checkbox" id="user5" name="user5">
+                              Rohtak User
+                            </label>
+                            <br>
+                            <label>
+                              <input type="checkbox" id="user6" name="user6">
+                              Karnal User
+                            </label>
+                          </div>
+                        </div>
+                
+                      <button type="submit" style="margin-left: 400px;">Send</button>
+                    </form>
+                  </div>
+          </section>
+    <script>
+
+        // Logic for drop down list of User
+      const dropdownBtn = document.querySelector('.user-dropdown-btn');
+      const dropdownContent = document.querySelector('.user-dropdown-content');
+
+      dropdownBtn.addEventListener('click', function () {
+      dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+      });
+
+    </script>
+    
+  </body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Display Data</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+  
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    .container {
+      
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  
+    label {
+      display: inline-block;
+      width: 140px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+  
+    .dropdown-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+  
+    .column {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      width: 33.33%;
+      padding: 0 10px;
+    }
+  
+    input[type="text"] {
+      width: 50%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      
+    }
+  
+    button {
+      display: block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  
+    button:hover {
+      background-color: #45a049;
+    }
+  
+    /* Additional Styles for Visual Enhancement */
+    .dropdown-container:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  
+    .dropdown-container:hover {
+      background-color: #f1f1f1;
+    }
+  
+    .column:first-child {
+      align-items: flex-start;
+    }
+  </style>
+  
+</head>
+<body>
+  <div class="container">
+    <h1>Plantation Form</h1>
+    <form action="{{ url_for('display_details') }}" method="POST">
+    {% for row in rows %}
+      <div class="dropdown-container">
+        <div class="column">
+          <label for="division">Division:</label>
+          <input type="text" id="division" name="field1" value="{{ row[1] }}" readonly>
+        </div>
+
+        <div class="column">
+          <label for="district">LandCategory</label>
+          <input type="text" id="district" name="field8" value="{{ row[8] }}" >
+        </div>
+        <div class="column">
+            <label for="district">Sitename:</label>
+            <input type="text" id="district" name="field15" value="{{ row[15] }}" >
+          </div>
+      </div>
+
+      <div class="dropdown-container">
+        <div class="column">
+          <label for="division">District:</label>
+          <input type="text" id="division" name="field2" value="{{ row[2] }}" readonly>
+        </div>
+
+        <div class="column">
+          <label for="district">Land</label>
+          <input type="text" id="district" name="field9" value="{{ row[9] }}">
+        </div>
+        <div class="column">
+            <label for="district">Khasra No:</label>
+            <input type="text" id="district" name="field16" value="{{ row[16] }}">
+          </div>
+      </div>
+
+      <!-- Add more fields here -->
+      <div class="dropdown-container">
+        <div class="column">
+          <label for="field3">Range:</label>
+          <input type="text" id="field3" name="field3" value="{{ row[3] }}" readonly>
+        </div>
+
+        <div class="column">
+          <label for="field4">Scheme:</label>
+          <input type="text" id="field4" name="field10" value="{{ row[10] }}">
+        </div>
+
+        <div class="column">
+            <label for="field4">Lattitude:</label>
+            <input type="text" id="field4" name="field17" value="{{ row[17] }}" >
+          </div>
+
+      </div>
+
+      <div class="dropdown-container">
+        <div class="column">
+          <label for="field3">Block:</label>
+          <input type="text" id="field3" name="field4" value="{{ row[4] }}" readonly>
+        </div>
+
+        <div class="column">
+          <label for="field4">PlantationMonth:</label>
+          <input type="text" id="field4" name="field11" value="{{ row[11] }}" >
+        </div>
+        <div class="column">
+            <label for="field4">Longitude:</label>
+            <input type="text" id="field4" name="field18" value="{{ row[18] }}" >
+          </div>
+      </div>
+
+      <div class="dropdown-container">
+        <div class="column">
+          <label for="field3">Beat:</label>
+          <input type="text" id="field3" name="field5" value="{{ row[5] }}" readonly>
+        </div>
+
+        <div class="column">
+          <label for="field4">Unit:</label>
+          <input type="text" id="field4" name="field12" value="{{ row[12] }}">
+        </div>
+
+        <div class="column">
+            <label for="field4">Plant Category:</label>
+            <input type="text" id="field4" name="field19" value="{{ row[19] }}">
+          </div>
+
+      </div>
+
+      <div class="dropdown-container">
+        <div class="column">
+          <label for="field3">Village:</label>
+          <input type="text" id="field3" name="field6" value="{{ row[6] }}" readonly>
+        </div>
+
+        <div class="column">
+          <label for="field4">Value:</label>
+          <input type="text" id="field4" name="field13" value="{{ row[13] }}">
+        </div>
+
+        <div class="column">
+            <label for="field4">Species:</label>
+            <input type="text" id="field4" name="field20" value="{{ row[20] }}">
+          </div>
+      </div>
+      <div class="dropdown-container">
+        <div class="column">
+          <label for="field3">Wing:</label>
+          <input type="text" id="field3" name="field7" value="{{ row[7] }}" readonly>
+        </div>
+
+        <div class="column">
+          <label for="field4">Spaceing:</label>
+          <input type="text" id="field4" name="field14" value="{{ row[14] }}">
+        </div>
+
+        <div class="column">
+            <label for="field4">No of Plant:</label>
+            <input type="text" id="field4" name="field21" value="{{ row[21] }}">
+          </div>
+      </div>
+
+
+      <!-- Continue adding fields -->
+
+      <br><br>
+    {% endfor %}
+    <div style="display: flex; justify-content: center; align-items: center; height: 9vh;">
+      <button type="submit" style="padding: 10px 20px; background-color: #4CAF50; color: #fff; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">
+        Submit
+      </button>
+    </div>
+    
+    
+  </form>
+  </div>
+</body>
+</html>

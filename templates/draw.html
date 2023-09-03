@@ -1,0 +1,118 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", { packages: ["corechart"] });
+      google.charts.setOnLoadCallback(drawCharts);
+
+      function drawCharts() {
+        var userCount1 = 7; // Assuming `user_count1` is a JavaScript variable containing the dynamic value for the first chart
+        var userCount2 = 1; // Assuming `user_count2` is a JavaScript variable containing the dynamic value for the second chart
+        var userCount3 = 2; // Assuming `user_count3` is a JavaScript variable containing the dynamic value for the third chart
+        var userCount4 = 3; // Assuming `user_count4` is a JavaScript variable containing the dynamic value for the fourth chart
+        var userCount5 = 4; // Assuming `user_count5` is a JavaScript variable containing the dynamic value for the fifth chart
+        var userCount6 = 5; // Assuming `user_count6` is a JavaScript variable containing the dynamic value for the sixth chart
+
+        var data1 = google.visualization.arrayToDataTable([
+          ["Task", "Count"],
+          ["Unsubmitted Form", userCount1],
+          ["Saved Form", 2],
+          ["Pending Request", 2]
+        ]);
+
+        var data2 = google.visualization.arrayToDataTable([
+          ["Task", "Count"],
+          ["Unsubmitted Form", userCount2],
+          ["Saved Form", 3],
+          ["Pending Request", 4]
+        ]);
+
+        var data3 = google.visualization.arrayToDataTable([
+          ["Task", "Count"],
+          ["Unsubmitted Form", userCount3],
+          ["Saved Form", 5],
+          ["Pending Request", 1]
+        ]);
+
+        var data4 = google.visualization.arrayToDataTable([
+          ["Task", "Count"],
+          ["Unsubmitted Form", userCount4],
+          ["Saved Form", 2],
+          ["Pending Request", 6]
+        ]);
+
+        var data5 = google.visualization.arrayToDataTable([
+          ["Task", "Count"],
+          ["Unsubmitted Form", userCount5],
+          ["Saved Form", 3],
+          ["Pending Request", 2]
+        ]);
+
+        var data6 = google.visualization.arrayToDataTable([
+          ["Task", "Count"],
+          ["Unsubmitted Form", userCount6],
+          ["Saved Form", 4],
+          ["Pending Request", 1]
+        ]);
+
+        var options = {
+          title: "",
+          is3D: true,
+          colors: ["#00FF00", "#FF0000", "#800080"],
+          legend: "none" // Remove the legend
+        };
+
+        var chart1 = new google.visualization.PieChart(document.getElementById("piechart_1"));
+        chart1.draw(data1, options);
+
+        var chart2 = new google.visualization.PieChart(document.getElementById("piechart_2"));
+        chart2.draw(data2, options);
+
+        var chart3 = new google.visualization.PieChart(document.getElementById("piechart_3"));
+        chart3.draw(data3, options);
+
+        var chart4 = new google.visualization.PieChart(document.getElementById("piechart_4"));
+        chart4.draw(data4, options);
+
+        var chart5 = new google.visualization.PieChart(document.getElementById("piechart_5"));
+        chart5.draw(data5, options);
+
+        var chart6 = new google.visualization.PieChart(document.getElementById("piechart_6"));
+        chart6.draw(data6, options);
+      }
+    </script>
+    <style>
+      .chart-container {
+        width: 33%;
+        float: left;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chart-container">
+      <div id="piechart_1" style="width: 100%; height: 300px;"></div>
+      <div>Ambala 1</div>
+    </div>
+    <div class="chart-container">
+      <div id="piechart_2" style="width: 100%; height: 300px;"></div>
+      <div>Ambala 2</div>
+    </div>
+    <div class="chart-container">
+      <div id="piechart_3" style="width: 100%; height: 300px;"></div>
+      <div>Ambala 3</div>
+    </div>
+    <div class="chart-container">
+      <div id="piechart_4" style="width: 100%; height: 300px;"></div>
+      <div>Ambala 4</div>
+    </div>
+    <div class="chart-container">
+      <div id="piechart_5" style="width: 100%; height: 300px;"></div>
+      <div>Ambala 5</div>
+    </div>
+    <div class="chart-container">
+      <div id="piechart_6" style="width: 100%; height: 300px;"></div>
+      <div>Ambala 6</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Location Selection</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 8px;
+            align-items: center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select, input[type="submit"] {
+            
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        table {
+            width: 99%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        p {
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST">
+        
+        <select name="division" id="division">
+            <option value="">Division</option>
+            <option value="ambala">Ambala</option>
+        </select>
+        
+        <select name="district" id="district">
+            <option value="">District</option>
+        </select>
+        
+        <select name="block" id="block">
+            <option value="">Block</option>
+        </select>
+
+       
+        <select name="species" id="species">
+            <option value="">Species</option>
+            <option value="">Chikoo</option>
+            <option value="">Neem</option>
+            <option value="">Mango</option>
+            <option value="">Orange</option>
+        </select>
+
+        
+        <select name="khasra" id="khasra">
+                <option value="">Khasra No</option>
+                <option value="">12</option>
+                <option value="">13</option>
+                <option value="">14</option>
+        </select>
+
+
+        <select name="site" id="site">
+            <option value="">Site Name</option>
+            <option value="">S21</option>
+            <option value="">S22</option>
+            <option value="">S23</option>
+        </select>
+
+
+        <select name="scheme" id="scheme">
+            <option value="">Scheme</option>
+            <option value="">Scheme1</option>
+            <option value="">Scheme2</option>
+            <option value="">Scheme3</option>
+        </select>
+
+        
+                
+                
+                <select name="plant-category" id="plant-category">
+                    <option value="">Plant Category</option>
+                    <option value="">Category1</option>
+                    <option value="">Category2</option>
+                    <option value="">Category3</option>
+                </select>
+
+                <label for=""><h5>Value:</h5></label>
+                <input type="text" id="value" name="value6" class="month" placeholder="Enter Value" style="width: 80px;">
+
+                
+                
+
+                
+                <label for=""><h5>No of Plant:</h5></label>
+                <input type="text" id="value" name="value6" class="month" placeholder="Enter No of Plant" style="width: 110px;">
+
+        
+        <input type="submit" value="Submit">
+    </form>
+    
+    {% if cities %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Division</th>
+                    <th>District</th>
+                    <th>Block</th>
+                    <th>Species</th>
+                    <th>Khasra No</th>
+                    <th>Site Name</th>
+                    <th>Scheme</th>
+                    <th>Unit</th>
+                    <th>Value</th>
+                    <th>Plant Category</th>
+                    <th>No of Plant</th>
+                    <th>Plantation Month</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for city in cities %}
+                <tr>
+                    <td>{{ city.id }}</td>
+                    <td>{{ city.division }}</td>
+                    <td>{{ city.district }}</td>
+                    <td>{{ city.block }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No cities found.</p>
+    {% endif %}
+    
+    <script>
+        const districtSelect = document.getElementById('district');
+        const blockSelect = document.getElementById('block');
+        
+        const districtsByDivision = {
+            ambala: [
+                { name: 'Ambala', value: 'ambala' },
+                { name: 'Kurukshetra', value: 'kurukshetra' }
+            ]
+        };
+        
+        const blocksByDistrict = {
+            ambala: [
+                { name: 'Ambala', value: 'ambala' },
+                { name: 'Ambala-2', value: 'ambala-2' },
+                { name: 'Barara', value: 'barara' },
+                { name: 'Naraingarh', value: 'naraingarh' },
+                { name: 'Saha', value: 'saha' }
+            ],
+            kurukshetra: [
+                { name: 'Thanesar', value: 'thanesar' },
+                { name: 'Shahabad', value: 'shahabad' },
+                { name: 'Pehowa', value: 'pehowa' }
+            ]
+        };
+        
+        function updateDistrictOptions() {
+            const divisionSelect = document.getElementById('division');
+            const selectedDivision = divisionSelect.value;
+            
+            districtSelect.innerHTML = '<option value="">District</option>';
+            blockSelect.innerHTML = '<option value="">Block</option>';
+            
+            if (selectedDivision && districtsByDivision[selectedDivision]) {
+                const districts = districtsByDivision[selectedDivision];
+                districts.forEach(district => {
+                    const option = document.createElement('option');
+                    option.value = district.value;
+                    option.textContent = district.name;
+                    districtSelect.appendChild(option);
+                });
+            }
+        }
+        
+        function updateBlockOptions() {
+            const districtSelected = districtSelect.value;
+            
+            blockSelect.innerHTML = '<option value="">select</option>';
+            
+            if (districtSelected && blocksByDistrict[districtSelected]) {
+                const blocks = blocksByDistrict[districtSelected];
+                blocks.forEach(block => {
+                    const option = document.createElement('option');
+                    option.value = block.value;
+                    option.textContent = block.name;
+                    blockSelect.appendChild(option);
+                });
+            }
+        }
+        
+        const divisionSelect = document.getElementById('division');
+        divisionSelect.addEventListener('change', updateDistrictOptions);
+        
+        districtSelect.addEventListener('change', updateBlockOptions);
+        
+        updateDistrictOptions();
+    </script>
+</body>
+</html>

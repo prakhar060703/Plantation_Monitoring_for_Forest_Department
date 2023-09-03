@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Location Selection</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 8px;
+            align-items: center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select, input[type="submit"] {
+            
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        table {
+            width: 99%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        p {
+            text-align: center;
+            font-style: italic;
+        }
+
+        
+        .styled-select {
+  /* Other styles */
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 6px;
+  font-size: 15px;
+  
+  font-weight: bold;
+  color: #555;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.styled-select option {
+  background-color: #fff;
+  color: #555;
+}
+
+.styled-select:hover {
+  border-color: #aaa;
+}
+
+.styled-select:focus {
+  border-color: #555;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.styled-select:disabled {
+  background-color: #eee;
+  color: #999;
+  cursor: not-allowed;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <form method="POST">
+        
+        <input type="submit" value="Search" style="margin-left: 857px; padding: 10px 25px;">
+        <a class="btn" href="{{url_for('print_csv')}}" style="  padding: 10px 20px; background-color: #ff2b00; color: #fff; text-decoration: none; border-radius: 4px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold;">Print</a>
+        <button   style="padding: 10px 25px; background-color: #aa1191 ;color: #fff; text-decoration: none; border-radius: 4px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold;" onclick="clearTable()">Clear</button>
+        <a class="btn" href="/dashboarda" style="  padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 4px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold;">Home</a>
+        
+        <select name="division" id="division" class="styled-select">
+            <option value="">Division</option>
+            <option value="ambala">Ambala</option>
+           </select>
+        
+        <select name="district" id="district" class="styled-select">
+            <option value="">District</option>
+            
+        </select>
+        
+        <select name="block" id="block" class="styled-select">
+            <option value="">Block</option>
+        </select>
+
+       
+        <select name="species" id="species" class="styled-select">
+            <option value="">Species</option>
+            <option >Chikoo</option>
+            <option >Neem</option>
+            <option >Mango</option>
+            <option >Orange</option>
+        </select>
+
+        
+        <select name="khasra" id="khasra" class="styled-select">
+                <option value="">Khasra No</option>
+                <option >12</option>
+                <option >13</option>
+                <option >14</option>
+        </select>
+
+
+        <select name="site" id="site" class="styled-select">
+            <option value="">Site Name</option>
+            <option >S21</option>
+            <option >S22</option>
+            <option >S23</option>
+        </select>
+
+
+        <select name="scheme" id="scheme" class="styled-select">
+            <option value="">Scheme</option>
+            <option >Scheme 1</option>
+            <option >Scheme 2</option>
+            <option >Scheme 3</option>
+        </select>
+
+        
+                
+                
+                <select name="plantcategory" id="plantcategory" class="styled-select">
+                    <option value="">Plant Category</option>
+                    <option >Category 1</option>
+                    <option >Category 2</option>
+                    <option >Category 3</option>
+                </select>
+
+                <label for=""><h5>Value:</h5></label>
+                <input type="text" id="value" name="value5" class="month" placeholder="Enter Value" style="width: 80px;">
+
+                
+                
+
+                
+                <label for=""><h5>No of Plant:</h5></label>
+                <input type="text" id="value" name="value6" class="month" placeholder="Enter No of Plant" style="width: 110px;">
+
+        
+        <!-- <input type="submit" value="Search" style="margin-left: 5px; padding: 10px 25px;">
+        <a class="btn" href="/dashboarda" style="display: inline-block; margin-left: 1110px; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 4px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold;">Home</a> -->
+
+
+    </form>
+    
+    {% if cities %}
+        <table id="citiesTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Division</th>
+                    <th>District</th>
+                    <th>Block</th>
+                    <th>Species</th>
+                    <th>Khasra No</th>
+                    <th>Site Name</th>
+                    <th>Scheme</th>
+                    <th>Plant Category</th>
+                    <th>Value</th>
+                    
+                    <th>No of Plant</th>
+
+                    <th>PlantationDate</th>
+                    <th>Land</th>
+                    <th>LandCategory</th>
+                    <th>Unit</th>
+                    <th>Spaceing</th>
+
+                    
+
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for city in cities %}
+                <tr>
+                    <td>{{ city.id }}</td>
+                    <td>{{ city.division }}</td>
+                    <td>{{ city.district }}</td>
+                    <td>{{ city.block }}</td>
+                    <td>{{ city.species }}</td>
+                    <td>{{ city.khasra }}</td>
+                    <td>{{ city.site }}</td>
+                    <td>{{ city.scheme }}</td>
+                    <td>{{ city.plantcategory }}</td>
+                    <td>{{ city.value5 }}</td>
+                    <td>{{ city.value6 }}</td>
+                    <td>{{ city.plantationdate }}</td>
+                    <td>{{ city.land }}</td>
+                    <td>{{ city.landcategory }}</td>
+                    <td>{{ city.unit }}</td>
+                    <td>{{ city.spaceing }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    {% else %}
+        <p>No Record found.</p>
+    {% endif %}
+    
+    <script>
+        const districtSelect = document.getElementById('district');
+        const blockSelect = document.getElementById('block');
+        
+        const districtsByDivision = {
+            ambala: [
+                { name: 'Ambala', value: 'ambala' },
+                { name: 'Kurukshetra', value: 'kurukshetra' }
+            ]
+        };
+        
+        const blocksByDistrict = {
+            ambala: [
+                { name: 'Ambala', value: 'ambala' },
+                { name: 'Ambala-2', value: 'ambala-2' },
+                { name: 'Barara', value: 'barara' },
+                { name: 'Naraingarh', value: 'naraingarh' },
+                { name: 'Saha', value: 'saha' }
+            ],
+            kurukshetra: [
+                { name: 'Thanesar', value: 'thanesar' },
+                { name: 'Shahabad', value: 'shahabad' },
+                { name: 'Pehowa', value: 'pehowa' }
+            ]
+        };
+        
+        function updateDistrictOptions() {
+            const divisionSelect = document.getElementById('division');
+            const selectedDivision = divisionSelect.value;
+            
+            districtSelect.innerHTML = '<option value="">District</option>';
+            blockSelect.innerHTML = '<option value="">Block</option>';
+            
+            if (selectedDivision && districtsByDivision[selectedDivision]) {
+                const districts = districtsByDivision[selectedDivision];
+                districts.forEach(district => {
+                    const option = document.createElement('option');
+                    option.value = district.value;
+                    option.textContent = district.name;
+                    districtSelect.appendChild(option);
+                });
+            }
+        }
+        
+        function updateBlockOptions() {
+            const districtSelected = districtSelect.value;
+            
+            blockSelect.innerHTML = '<option value="">select</option>';
+            
+            if (districtSelected && blocksByDistrict[districtSelected]) {
+                const blocks = blocksByDistrict[districtSelected];
+                blocks.forEach(block => {
+                    const option = document.createElement('option');
+                    option.value = block.value;
+                    option.textContent = block.name;
+                    blockSelect.appendChild(option);
+                });
+            }
+        }
+        
+        const divisionSelect = document.getElementById('division');
+        divisionSelect.addEventListener('change', updateDistrictOptions);
+        
+        districtSelect.addEventListener('change', updateBlockOptions);
+        
+        updateDistrictOptions();
+
+        function clearTable() {
+        // Perform an AJAX request to the clear route
+        fetch("{{ url_for('clear') }}")
+            .then(function(response) {
+                // Redirect to the mis route
+                window.location.href = "{{ url_for('mis') }}";
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    }   
+    </script>
+</body>
+</html>

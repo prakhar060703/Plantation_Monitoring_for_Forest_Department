@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<!-- Website - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Responsiive Admin Dashboard | CodingLab</title>
+    
+    <!-- Boxicons CDN Link -->
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        /* Googlefont Poppins CDN Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.sidebar{
+  position: fixed;
+  height: 100%;
+  width: 240px;
+  background: #0A2558;
+  transition: all 0.5s ease;
+}
+.sidebar.active{
+  width: 60px;
+}
+.sidebar .logo-details{
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+.sidebar .logo-details i{
+  font-size: 28px;
+  font-weight: 500;
+  color: #fff;
+  min-width: 60px;
+  text-align: center
+}
+.sidebar .logo-details .logo_name{
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+}
+.sidebar .nav-links{
+  margin-top: 10px;
+}
+.sidebar .nav-links li{
+  position: relative;
+  list-style: none;
+  height: 50px;
+}
+.sidebar .nav-links li a{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+.sidebar .nav-links li a.active{
+  background: #081D45;
+}
+.sidebar .nav-links li a:hover{
+  background: #081D45;
+}
+.sidebar .nav-links li i{
+  min-width: 60px;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+}
+.sidebar .nav-links li a .links_name{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.sidebar .nav-links .log_out{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.home-section{
+  position: relative;
+  background: #f5f5f5;
+  min-height: 100vh;
+  width: calc(100% - 240px);
+  left: 240px;
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section{
+  width: calc(100% - 60px);
+  left: 60px;
+}
+.home-section nav{
+   display: flex;
+  justify-content: space-between; 
+  height: 65px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: calc(100% - 240px);
+  left: 240px;
+  z-index: 100;
+  padding: 0 20px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section nav{
+  left: 60px;
+  width: calc(100% - 60px);
+}
+.home-section nav .sidebar-button{
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: 12px;
+  
+}
+nav .sidebar-button i{
+  font-size: 35px;
+  margin-right: 10px;
+}
+
+
+
+
+
+.home-section .home-content{
+  position: relative;
+  padding-top: 94px;
+}
+.home-content .overview-boxes{
+  
+  width: 100%;
+  
+}
+
+
+.home-content .sales-boxes{
+  display: flex;
+  justify-content: space-between;
+  /* padding: 0 20px; */
+}
+
+/* left box */
+.home-content .sales-boxes .recent-sales{
+  width: 98%;
+  background: #fff;
+  padding: 20px 30px;
+  margin: -16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+.dropdown-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -20px;
+  
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.dropdown-select {
+  margin-top: 20px;
+}
+
+.dropdown-select label {
+  margin-right: 10px;
+}
+
+.dropdown-select select {
+  width: 120px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+}
+
+.month{
+    width: 120px; /* Adjust the width as needed */
+    height: 30px; 
+}
+
+.button-container {
+ 
+  text-align: center;
+    margin-top: 24px;
+    margin-bottom: 40px;
+}
+
+.button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button-primary {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.button-secondary {
+  background-color: #f44336;
+  color: white;
+}
+
+.button-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+}
+
+.button-icon-save::before {
+  content: "\2713";
+}
+
+.button-icon-cancel::before {
+  content: "\2716";
+}
+
+input{
+  width: 150px;
+    padding: 6px;
+}
+
+.home-section nav .profile-details{
+  display: flex;
+  align-items: center;
+  background: #F5F6FA;
+  border: 2px solid #EFEEF1;
+  border-radius: 6px;
+  height: 50px;
+  min-width: 190px;
+  padding: 0 15px 0 2px;
+}
+
+nav .profile-details .admin_name{
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 10px;
+  white-space: nowrap;
+}
+nav .profile-details i{
+  font-size: 25px;
+  color: #333;
+}
+
+
+
+      #formNumber {
+        margin-left: 10px;
+      }
+
+
+
+
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="logo-details">
+        
+        <span class="logo_name" style="margin-left: 10px;">WELCOME</span>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="{{ url_for('dashboard') }}" class="active">
+            <i class="bx bx-grid-alt"></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('add_details') }}" class="active">
+            <i class="bx bx-box"></i>
+            <span class="links_name">Plantation Form</span>
+          </a>
+        </li>
+        {% if session['name'] == 'HQ user/ Admin' %}
+        <li class>
+            <a href="{{ url_for('addplant') }}">
+              <i class="bx bx-list-ul"></i>
+              <span class="links_name">Plantation Details</span>
+            </a>
+          </li>
+          {% endif %}
+          {% if session['name'] == 'HQ user/ Admin' %}
+          <li class>
+            <a href="{{ url_for('mis') }}">
+              <i class="bx bx-error-circle"></i>
+              <span class="links_name">MIS Report</span>
+            </a>
+          </li>
+          {% endif %}
+        <li class="log_out">
+          <a href="{{ url_for('logout') }}" class="active">
+            <i class="bx bx-log-out"></i>
+            <span class="links_name">Log out</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <section class="home-section">
+      <nav>
+        <div class="sidebar-button">
+          <img src="http://localhost:8000/logo.png " height="75px" style="margin-left: -18px;" alt="Logo" />
+          <h1 style="margin-left: 7px;">PLANTATION  FORM</h1>
+        </div>
+        <div class="profile-details">
+          {% if session['name'] == 'user1' %}
+          <span class="admin_name"><h2>Ambala User...<i class="bx bx-user small-icon"></i></h2></span>
+          {% endif %}
+          {% if session['name'] == 'user2' %}
+          <span class="admin_name"><h2>Faridabad User...<i class="bx bx-user small-icon"></i></h2></span>
+          {% endif %}
+          {% if session['name'] == 'user3' %}
+          <span class="admin_name"><h2>Gurugram User...<i class="bx bx-user small-icon"></i></h2></span>
+          {% endif %}
+          {% if session['name'] == 'user4' %}
+          <span class="admin_name"><h2>Hisar User...<i class="bx bx-user small-icon"></i></h2></span>
+          {% endif %}
+          {% if session['name'] == 'user5' %}
+          <span class="admin_name"><h2>Rohtak User...<i class="bx bx-user small-icon"></i></h2></span>
+          {% endif %}
+          {% if session['name'] == 'user6' %}
+          <span class="admin_name"><h2>Karnal User...<i class="bx bx-user small-icon"></i></h2></span>
+          {% endif %}
+        </div>
+        </div>
+      </nav>
+
+      <div class="home-content">
+        <div class="overview-boxes">
+        <div class="sales-boxes">
+          <div class="recent-sales box">
+          <section style="margin-top: 10px;">
+            <form action="{{ url_for('add_details') }}" method="POST" id="myForm">
+            {% if rows %}
+            <h1 style=" padding: 10px 20px;
+            margin-bottom: 23px;
+            margin-top: -14px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #f5f5f5;">Form<span id="formNumber">1 </span> of <span id="totalForms"> 0</span></h1>
+            {% for row in rows %}
+              <div class="form-container" >
+                  <div class="dropdown-container">
+                      <div class="column">
+                          <div class="dropdown-select">
+                            <label for="division1">Division :</label>
+                            <input type="text" id="division" name="field1" value="{{ row[1] }}" readonly>
+                              
+                          </div>
+                          <div class="dropdown-select">
+                              <label for="division2">District :</label>
+                              <input type="text" id="division" name="field2" value="{{ row[2] }}" readonly>
+                          </div>
+                          <div class="dropdown-select">
+                              <label for="division3">Range :</label>
+                              <input type="text" id="district" name="field3" value="{{ row[3] }}" >
+                          </div>
+                          <div class="dropdown-select">
+                              <label for="division4">Block :</label>
+                              <input type="text" id="division" name="field4" value="{{ row[4] }}" readonly>
+                          </div>
+                          <div class="dropdown-select">
+                              <label for="division5">Beat :</label>
+                              <input type="text" id="division" name="field5" value="{{ row[5] }}" readonly>
+                           </div>
+                           <div class="dropdown-select">
+                            <label for="division6">Village :</label>
+                            <input type="text" id="division" name="field6" value="{{ row[6] }}" readonly>
+                         </div>
+                          <div class="dropdown-select">
+                              <label for="division7">Wing :</label>
+                              <input type="text" id="division" name="field7" value="{{ row[7] }}" readonly>
+                          </div>
+                          
+                      </div>
+                      <div class="column">
+                          <div class="dropdown-select">
+                              <label for="division8">Land Category :</label>
+                              <input type="text" id="division" name="field8" value="{{ row[8] }}" >
+                          </div>
+                          <div class="dropdown-select">
+                              <label for="division9">Land :</label>
+                              <input type="text" id="division" name="field9" value="{{ row[9] }}" >
+                          </div>
+                          <div class="dropdown-select">
+                              <label for="division10">Scheme :</label>
+                              <input type="text" id="division" name="field10" value="{{ row[10] }}" >
+                          </div>
+                          <div class="dropdown-select">
+                            <label  for="plantation-month">Plantation Month:</label>
+                            <input type="date" id="division" name="field11" value="{{ row[11] }}" >
+
+                        </div>
+                        <div class="dropdown-select">
+                            <label for="division11">Unit :</label>
+                            <input type="text" id="division" name="field12" value="{{ row[12] }}" >
+                        </div>
+                        <div class="dropdown-select">
+                            <label for="value">Value :</label>
+                            <input type="text" id="division" name="field13" value="{{ row[13] }}" >
+                        </div>
+                        <div class="dropdown-select">
+                            <label for="value">Spaceing :</label>
+                            <input type="text" id="division" name="field14" value="{{ row[14] }}" >
+                        </div>
+                        
+                    </div>
+
+                        <div class="column">
+                            <div class="dropdown-select">
+                                <label for="value">Site Name :</label>
+                                <input type="text" id="division" name="field15" value="{{ row[15] }}" >
+                            </div>
+                            <div class="dropdown-select">
+                                <label for="value">Khasra No :</label>
+                                <input type="text" id="division" name="field16" value="{{ row[16] }}">
+                            </div>
+                            <div class="dropdown-select">
+                                <label for="value">Latitude :</label>
+                                <input type="text" id="division" name="field17" value="{{ row[17] }}" >
+                            </div>
+                            <div class="dropdown-select">
+                                <label for="value">Longitude :</label>
+                                <input type="text" id="division" name="field18" value="{{ row[18] }}" >
+                            </div>
+                            <div class="dropdown-select">
+                                <label for="division12">Plant Category :</label>
+                                <input type="text" id="division" name="field19" value="{{ row[19] }}" >
+                            </div>
+                            <div class="dropdown-select">
+                                <label for="value">Species :</label>
+                                <input type="text" id="division" name="field20" value="{{ row[20] }}" >
+                            </div>
+                            <div class="dropdown-select">
+                                <label for="value">No of Plant :</label>
+                                <input type="text" id="division" name="field21" value="{{ row[21] }}" >
+                            </div>
+                          </div>
+                 
+                    </div>
+                   
+                    <!-- <div class="button-container">
+                        <button class="button button-primary" type="submit">
+                          <span class="button-icon button-icon-save"></span>Save
+                        </button>
+                        <button class="button button-secondary" type="button" onclick="resetForm()">
+                          <span class="button-icon button-icon-cancel"></span>Cancel
+                      </button>
+                      </div> -->
+                      <div class="button-container">
+                        <button class="button button-secondary" type="button" onclick="previousForm()">
+                          <span class="button-icon button-icon-prev"></span>Previous
+                        </button>
+                        <button class="button button-primary" type="submit">
+                          <span class="button-icon button-icon-save"></span>Save
+                        </button>
+                        <button class="button button-secondary" type="button" onclick="nextForm()">
+                          <span class="button-icon button-icon-next"></span>Next
+                        </button>
+                        <button class="button button-secondary" type="button" onclick="resetForm()">
+                          <span class="button-icon button-icon-cancel"></span>Cancel
+                        </button>
+                      </div>
+                  
+              </div>
+              {% endfor %}
+              {% else %}
+              <p>No form to submit.</p>
+              {% endif %}
+            </form>
+          </section>
+          
+            
+        </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // function resetForm() {
+      //     document.getElementById("myForm").reset();
+      // }
+      
+      var currentFormIndex = 0;
+      var forms = document.querySelectorAll(".form-container");
+      var formNumberElement = document.getElementById("formNumber");
+      var totalFormsElement = document.getElementById("totalForms");
+
+      function showForm(index) {
+        for (var i = 0; i < forms.length; i++) {
+          forms[i].style.display = "none";
+        }
+        forms[index].style.display = "block";
+        formNumberElement.textContent = index + 1;
+      }
+
+      function previousForm() {
+        if (currentFormIndex > 0) {
+          currentFormIndex--;
+          showForm(currentFormIndex);
+        }
+      }
+
+      function nextForm() {
+        if (currentFormIndex < forms.length - 1) {
+          currentFormIndex++;
+          showForm(currentFormIndex);
+        }
+      }
+
+      function resetForm() {
+        document.getElementById("myForm").reset();
+      }
+
+      // Show the first form initially
+      showForm(currentFormIndex);
+      totalFormsElement.textContent = forms.length;
+
+  </script>
+
+    
+  </body>
+</html>
